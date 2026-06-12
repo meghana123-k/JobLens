@@ -1,20 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>JobLens</title>
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/"> JobLens </a>
 
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/companies/">Companies</a> |
-        <a href="/jobs/">Jobs</a>
+        <div class="navbar-nav">
+          <a class="nav-link" href="/"> Home </a>
+
+          <a class="nav-link" href="/companies/"> Companies </a>
+
+          <a class="nav-link" href="/jobs/"> Jobs </a>
+          
+          <a class="nav-link" href="/analytics/"> Analytics </a>
+        </div>
+      </div>
     </nav>
 
-    <hr>
-
-    {% block content %}
-    {% endblock %}
-
-</body>
+    <div class="container mt-4">{% block content %} {% endblock %}</div>
+  </body>
 </html>

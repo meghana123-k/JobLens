@@ -1,0 +1,56 @@
+{% extends "jobs/base.html" %} {% block content %}
+
+<h1>Top Hiring Companies</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Jobs Posted</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for company in top_companies %}
+
+    <tr>
+      <td>{{ company.name }}</td>
+
+      <td>{{ company.job_count }}</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+<hr />
+
+<h2>Top Skills</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Skill</th>
+      <th>Frequency</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for skill in top_skills %}
+
+    <tr>
+      <td>{{ skill.name }}</td>
+
+      <td>{{ skill.job_count }}</td>
+    </tr>
+
+    {% empty %}
+
+    <tr>
+      <td colspan="2">No skills found.</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
