@@ -7,7 +7,15 @@ class ETLLog(models.Model):
 
     records_processed = models.IntegerField(default=0)
 
-    status = models.CharField(max_length=50)
+    STATUS_CHOICES = [
+    ("SUCCESS", "SUCCESS"),
+    ("FAILED", "FAILED"),
+]
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES
+    )
 
     execution_time = models.FloatField()
 

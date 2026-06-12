@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from jobs.views import home
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", include("jobs.urls")),
+    path("etl-logs/", include("etl_logs.urls")),
 ]

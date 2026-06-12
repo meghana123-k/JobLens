@@ -2,19 +2,69 @@
 
 {% block content %}
 
-<div class="row">
+<div class="container mt-4">
 
-    <div class="col-md-4">
+    <h1 class="text-center mb-4">
+        JobLens Dashboard
+    </h1>
 
-        <div class="card text-center">
+    <div class="row g-4 mb-5">
 
-            <div class="card-body">
+        <div class="col-md-4">
 
-                <h5>Total Companies</h5>
+            <div class="card text-bg-primary shadow">
 
-                <h2>
-                    {{ total_companies }}
-                </h2>
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">
+                        Total Companies
+                    </h5>
+
+                    <h1>
+                        {{ total_companies }}
+                    </h1>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-bg-success shadow">
+
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">
+                        Total Jobs
+                    </h5>
+
+                    <h1>
+                        {{ total_jobs }}
+                    </h1>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-bg-warning shadow">
+
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">
+                        Total Skills
+                    </h5>
+
+                    <h1>
+                        {{ total_skills }}
+                    </h1>
+
+                </div>
 
             </div>
 
@@ -22,17 +72,71 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="card shadow">
 
-        <div class="card text-center">
+        <div class="card-header bg-dark text-white">
 
-            <div class="card-body">
+            <h4 class="mb-0">
+                Recent Jobs
+            </h4>
 
-                <h5>Total Jobs</h5>
+        </div>
 
-                <h2>
-                    {{ total_jobs }}
-                </h2>
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for job in recent_jobs %}
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ job.title }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ job.company.name }}
+                            </td>
+
+                            <td>
+                                {{ job.location }}
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="3" class="text-center">
+
+                                No jobs available.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
 
             </div>
 
@@ -40,60 +144,6 @@
 
     </div>
 
-    <div class="col-md-4">
-
-        <div class="card text-center">
-
-            <div class="card-body">
-
-                <h5>Total Skills</h5>
-
-                <h2>
-                    {{ total_skills }}
-                </h2>
-
-            </div>
-
-        </div>
-
-    </div>
-    <hr>
-
-<h3>Recent Jobs</h3>
-
-<table class="table table-striped">
-
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Company</th>
-            <th>Location</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        {% for job in recent_jobs %}
-
-        <tr>
-            <td>{{ job.title }}</td>
-            <td>{{ job.company.name }}</td>
-            <td>{{ job.location }}</td>
-        </tr>
-
-        {% empty %}
-
-        <tr>
-            <td colspan="3">
-                No jobs available.
-            </td>
-        </tr>
-
-        {% endfor %}
-
-    </tbody>
-
-</table>
 </div>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from jobs.models import Company, Job
 from .services import get_dashboard_stats
 from .analytics_service import get_top_hiring_companies, get_top_skills
@@ -27,8 +28,19 @@ def companies(request):
 
 
 def jobs_list(request):
-    jobs_list = Job.objects.all()
-    context = {"jobs_list": jobs_list}
+
+    jobs = Job.objects.order_by("-id")
+
+    paginator = Paginator(jobs, 10)
+
+    page_number = request.GET.get("page")
+
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        "page_obj": page_obj,
+    }
+
     return render(request, "jobs/jobs_list.html", context)
 
 
