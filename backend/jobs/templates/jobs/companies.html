@@ -1,0 +1,17 @@
+{% extends "jobs/base.html" %}
+
+{% block content %}
+
+<h1>Companies</h1>
+
+<ul>
+    {% for company in companies %}
+        <li>
+            {{ company.name }}
+            -
+            {{ company.industry }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
